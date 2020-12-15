@@ -1,0 +1,64 @@
+<html>
+    <head></head>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <button onclick="return randomArray(2, 3)">
+                        Call Random Array Result
+                    </button>            
+                </td>
+            
+                <td>
+                    <span id="result"></span>
+                </td>
+            </tr>
+        </table>
+        <script>
+            function randomArray(numberOfIndex, numberOfArray) {
+                document.getElementById("result").innerHTML = "";
+                let params = ",Wulan,Raharjo,Widya,Yuda,Cinta,Iskandar,Hidayat,Kusuma,Indah,Jusuf,";
+                let result = [];
+
+                let chunks = params .split(",");
+
+                for (let index = 0; index < numberOfIndex; index++) {
+                    result = setIndexes(chunks, numberOfIndex, numberOfArray);         
+                }
+                console.log(result);
+
+                for (let index = 0; index < result.length; index++) {
+                    document.getElementById("result").innerHTML = document.getElementById("result").innerHTML + '[' + result[index] + '], ';
+                }
+            }
+
+            function setIndexes(chunks, numberOfIndex, numberOfArray) {
+                let result = [];
+                for (let index = 0; index < numberOfIndex; index++) {
+                    result[index] = getResult(chunks, numberOfArray);
+                }
+
+                return result;
+            }
+
+            function getResult(chunks, numberOfArray) {
+                let result = [];
+                for (let index = 0; index < numberOfArray; index++) {
+                    result[index] = chunks[getRandomIndex(chunks.length)];
+                }
+
+                return result;
+            }
+
+            function getRandomIndex(limit) {
+                let result = Math.floor(Math.random() * limit);
+
+                if (result > limit) {
+                    return getRandomIndex(limit);
+                }
+
+                return result;
+            }
+        </script>
+    </body>
+</html>
